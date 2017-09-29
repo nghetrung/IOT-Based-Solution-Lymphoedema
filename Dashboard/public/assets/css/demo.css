@@ -183,8 +183,8 @@ input[type=text] {
 input[type=text] {
     width: 190px;
     height : 40px;
-    -webkit-transition: width 0.4s ease-in-out;
-    transition: width 0.4s ease-in-out;
+    -webkit-transition: width 0.2s ease-in-out;
+    transition: width 0.2s ease-in-out;
 }
 
 /* When the input field gets focus, change its width to 100% */
