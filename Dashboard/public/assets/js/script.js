@@ -1,170 +1,140 @@
-var database;
-var array = [];
-
-function setup() {
-
-  var config = {
+(function() {
+	
+	var config = {
     apiKey: "AIzaSyA6Hk7drZX9uuRbRnqExRKQFsGJ5bc3de4",
     authDomain: "test-c6de8.firebaseapp.com",
     databaseURL: "https://test-c6de8.firebaseio.com",
     projectId: "test-c6de8",
     storageBucket: "test-c6de8.appspot.com",
     messagingSenderId: "201430894267"
-  };
-  firebase.initializeApp(config);
-  database = firebase.database();
+	}
+	firebase.initializeApp(config);
+	
+	var app = angular.module("myApp", ["firebase", "chart.js"]);
+	var wrist = [];
+	var tencm = [];
+	var twentycm = [];
+	var thirtycm = [];
+	var fortycm = [];
+	var names = [];
+	var name=localStorage.getItem("storageName");	 
+	
+		app.controller("MyChartCtrl", function($scope, $firebaseObject, $firebaseArray) {
+			
+			
+			const rootRef = firebase.database().ref();
+			
+			// point to the child
+			const refUser = rootRef.child(name);
+			const refAffected = refUser.child("affected");
+			
+			refAffected.on('value', function(snapshot) {
+				var dayReadings = snapshotToArray(snapshot);	
+				console.log(dayReadings);
+				console.log(dayReadings[0]);      // SAME
+				
+				// create arrays for the chart
+				snapshot.forEach(function(childSnapshot) {
+					/*childSnapshot.forEach (function(childSnapshot2) {
+						console.log(childSnapshot2.key);
+					});*/
+					var day = snapshotToArray(childSnapshot);
+					console.log(day);
+					
+					console.log(childSnapshot.val());	// SAME
+					//$scope.wrist.push(day[0]);
+					/*$scope.wrist.push(childSnapshot.val().wrist);
+					$scope.tencm.push(childSnapshot.val().tencm_reading);
+					$scope.twentycm.push(childSnapshot.val().twentycm_reading);
+					$scope.thirtycm.push(childSnapshot.val().thirtycm_reading);
+					$scope.fortycm.push(childSnapshot.val().fortycm_reading);*/
+				
+				});
+			});
+		
+			
+			// sync it to a local angular object
+			$scope.dayReadings = $firebaseArray(refAffected);     
+			console.log($scope.dayReadings);
+			
+			// code to iterate the firebaseArray in the controller
+			$scope.dayReadings.$loaded()
+				.then(function(){
+					angular.forEach($scope.dayReadings, function(dayReading) {
+						console.log(dayReading);		// SAME
+						//console.log(dayReading.wrist);
+						wrist.push(dayReading.wrist);
+						tencm.push(dayReading.tencm_reading);
+						twentycm.push(dayReading.twentycm_reading);
+						thirtycm.push(dayReading.thirtycm_reading);
+						fortycm.push(dayReading.fortycm_reading);
+						$scope.trendData = [wrist, tencm, twentycm, thirtycm, fortycm];
+						//try to do this in the refAffected, probably the same thing
+					});
+				});
+				
 
-   createCanvas(0,0);
-
-  // Start loading the data
-  loadFirebase();
-
-}
-
-function loadFirebase() {
-  var ref = database.ref('Stanley');
-  ref.child('affected').on("value", gotData, errData);
-}
-
-function errData(error) {
-  console.log("Something went wrong.");
-  console.log(error);
-}
-
-// The data comes back as an object
-function gotData(data) {
-
-  var scores=data.val();
-  var keys=Object.keys(scores);
-
-  //console.log(keys);
-  // var listname = createElement('ol');
-  //listname.parent('namelist');
-
-  //var list = createElement('ol');
-  //list.parent('scorelist');
-
-
-  for(var i=0;i<keys.length;i++)
-  {
-
-			var k=keys[i];
-			//var name=scores[k].name;
-			var wrist=scores[k].wrist;
-			var tencm=scores[k].tencm_reading;
-			var twentycm=scores[k].twentycm_reading;
-			var thirtycm=scores[k].thirtycm_reading;
-			var fortycm=scores[k].fortycm_reading;
-
-
-			//var li1=createElement('li','Name '+name);
-			//li1.parent(listname);
-			//var li=createElement('li',' Tencm : '+tencm+' Twentycm : '+twentycm+' Thirtycm : '+thirtycm+' Fortycm : '+fortycm+' wrist :'+wrist);
-
-			//li.class('listing');
-			//li.parent(list);
-
-			array.push(wrist,tencm,twentycm,thirtycm,fortycm);
-			/*array.push(twentycm);
-			array.push(thirtycm);
-			array.push(fortycm);
-			array.push(wrist);
-			*/
-
-
-
-
-  }
-  console.log(array);
-  	// Chart js
-			// Our labels along the x-axis
-		var days = ["Monday","Tuesday","wednesday","Thursday","Friday","Saturday"];
-			// For drawing the lines
-		var wristInitialIndex = 0;
-		var tenInitialIndex = 1;
-		var twentyInitialIndex = 2;
-		var thirtyInitialIndex = 3;
-		var fortyInitialIndex = 4;
-
-
-		var wrist = [];
-		for (var i = wristInitialIndex; i <= array.length - 5; i=i + 5) {
-			wrist.push(array[i]);
-
-		}
-
-		var tencm = [];
-		for (var i = tenInitialIndex; i <= array.length - 4; i=i + 5) {
-			tencm.push(array[i]);
-		}
-
-		var twentycm = [];
-		for (var i = twentyInitialIndex; i <= array.length - 3; i=i + 5) {
-			twentycm.push(array[i]);
-		}
-
-		var thirtycm = [];
-		for (var i = thirtyInitialIndex; i <= array.length - 2; i=i + 5) {
-			thirtycm.push(array[i]);
-		}
-
-		var fortycm = [];
-		for (var i = fortyInitialIndex; i <= array.length - 1; i=i + 5) {
-			fortycm.push(array[i]);
-		}
-
-		//console.log(wrist1);
-		var ctx = document.getElementById("myChart");
-
-		var myChart = new Chart(ctx, {
-			type: 'line',
-		data: {
-				labels: days,
-				datasets: [
-				{
-					data: wrist,
-					label : "Wrist",
-					backgroundColor : '	rgba(255,99,132,0.2)',
-					borderColor: 'rgba(255,99,132,0.5)',
-					borderWidth : 1
-				},
-				{
-					data: tencm,
-					label : "10 cm",
-					backgroundColor : 'rgba(0,0,255,0.2)',
-					borderColor: 'rgba(0,0,255,0.5)',
-					borderWidth : 1
-				},
-				{
-					data: twentycm,
-					label : "20 cm",
-					backgroundColor : 'rgba(0,255,0,0.2)',
-					borderColor: 'rgba(0,255,0,0.5)',
-					borderWidth : 1
-				},
-				{
-					data: thirtycm,
-					label : "30 cm",
-					backgroundColor : 'rgba(54,162,235,0.2)',
-					borderColor: 'rgba(54,162,235,1)',
-					borderWidth : 1
-				},
-				{
-					data: fortycm,
-					label : "40 cm",
-					backgroundColor : 'rgba(255,99,132,0.2)',
-					borderColor: 'rgba(255,99,132,1)',
-					borderWidth : 1
+			//console.log($scope.trendData);
+				
+			rootRef.on('value', function(snapshot) {
+				var name = snapshotToArray(snapshot);	
+				snapshot.forEach(function(childSnapshot) {
+					console.log(childSnapshot.key);
+					names.push(childSnapshot.key);
+					$scope.names = names;
+				});
+				console.log(name);
+				console.log($scope.names);
+			});
+			$scope.rootRefs = $firebaseArray(rootRef);			// useful for table in html
+			
+			// chart variables
+			$scope.labels = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+			$scope.type = "line";
+			$scope.series = ["wrist", "10cm", "20cm", "30cm", "40cm"];
+			$scope.options = {
+				legend: { display: true },
+				elements: {
+				  line: {
+					tension: 0.3,
+				  }
 				}
-				]
-		}
+			}
+			
+			$scope.chartTypes = ["Trend", "Interlimb"];
+			
+			$scope.toggle = function() {
+				//$scope.type = $scope.type === "line" ? "bar" : "line";
+				//console.log($scope.chartType);
+				// reassign the chart variables to match the correct graph
+				
+				//$scope.$watch('chartType', function () {
+					if ($scope.chartType == "Trend") {
+						console.log("Trend");
+						$scope.data = $scope.trendData;
+					} else if ($scope.chartType == "Interlimb") {
+						console.log("InterLimb");
+						$scope.data = [[10, 22, 19, 25, 32, 40, 55], [5, 10, 15, 30, 50, 33, 20], [7, 12, 17, 23, 41, 37, 27]];
+					}
+				//});
+			};
+			
+			
 		});
-//console.log(wrist1.length);
-while(array.length>0)
-{
-	array.pop();
-}
+		
+	function snapshotToArray(snapshot) {
+		var returnArr = [];
+		
+	
+		snapshot.forEach(function(childSnapshot) {
+			var item = childSnapshot.val();
+			item.key = childSnapshot.key;
 
+					returnArr.push(item);
+		});
 
-
-}
+		return returnArr;
+	};
+	
+		
+}())
