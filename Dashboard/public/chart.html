@@ -97,7 +97,7 @@
 					<li style="position:absolute ; bottom : 5px">
 						<a href="index.html" style="position:absolute ; bottom : 5px">
 							<i class = "pe-7s-angle-left"></i>
-							<p><font size = "4">Back</font></p>
+							<p><font size = "4"><span class="nowrap">Back</span></font></p>
 						</a>
 					</li>
 
@@ -129,8 +129,8 @@
 
 		<div class="container-fluid" ng-app="myApp"
 			<div class="wrap" ng-controller="MyChartCtrl">
-
 				<h1>Patient Name:
+					<a class = "btn btn-default" href="index.html" style="position:absolute ; left : 1149px"><span class = "nowrap"> < Return to Database </span></a>
 					<font color = #19B5FE>
 						<script>
 						document.write(window.localStorage.getItem("storageName"));
@@ -146,6 +146,7 @@
 
 								</select>
 			</div>
+
 			<footer class="footer">
 				<div class="container-fluid">
 					<nav class="pull-left">
