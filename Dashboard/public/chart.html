@@ -13,22 +13,22 @@
 		<!-- Angular Firebase -->
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
 		<script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
-	
+
 		<!-- Chart JS     -->
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/angular.chartjs/latest/angular-chart.min.js"></script>
-		
-		
+
+
 		<!-- P5.js  -->
 		<script src="libraries/p5.js" type="text/javascript"></script>
         <script src="libraries/p5.dom.js" type="text/javascript"></script>
-		
+
 		<!-- Firebase     -->
         <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
-		
+
 		<!-- Jquery   -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-		
+
 		<!-- Custom JS   -->
 		<script src = "assets/js/script.js" type = "text/javascript"></script>
 
@@ -71,15 +71,26 @@
 	                </a>
 	            </div>
 
-	            <ul class="nav">
-	                <li class="active">
-	                    <a href="table.html">
-	                        <i class="fa fa-dashboard"></i>
-	                        <p>Dashboard</p>
-	                    </a>
-	                </li>
+							<ul class="nav">
+								<li>
+									<a href="index.html">
+										<i class="fa fa-dashboard"></i>
+											<p>Dashboard</p>
+									</a>
+								</li>
 
-	            </ul>
+								<li class="active">
+									<a href="chart.html">
+										 <i class="pe-7s-rocket"></i>
+										 <p>Patient Status</p>
+								 </a>
+								</li>
+								<li>
+									<a href="patient.html">
+										<i class = "pe-7s-add-user"></i>
+										<p> Add Patient </p>
+								</li>
+								</ul>
 	    	</div>
 	    </div>
 
@@ -115,7 +126,7 @@
 								</canvas>
 								<select ng-model="chartType" ng-options="chartType for chartType in chartTypes" ng-change="toggle()">
 									<option value="">Select a chart</option>
-								
+
 								</select>
 							</div>
 						</div>
