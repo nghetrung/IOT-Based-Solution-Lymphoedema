@@ -48,7 +48,7 @@
 
 </head>
 
-<body ng-app="app">
+<body ng-app="app" class = "body">
 
 	<div class="wrapper">
 		<div class="sidebar" data-color="azure" data-image="assets/img/sidebar-5.jpg">
@@ -73,13 +73,6 @@
 							<i class="fa fa-dashboard"></i>
 								<p>Dashboard</p>
 						</a>
-					</li>
-
-					<li>
-						<a href="chart.html">
-							 <i class="pe-7s-rocket"></i>
-							 <p>Patient Status</p>
-					 </a>
 					</li>
 					<li>
 						<a href="patient.html">
@@ -113,29 +106,29 @@
 		</nav>
 		<div class="content">
 			<div id="message" ng-controller="MyCtrl">
-				<h3> Patient Database</h3>
+				<h2> Patient Database</h2>
 				<form>
-					<p> Search Patient : <input type="text" name="search" placeholder="Search.." ng-model="searchText.First_Name"> </p>
+				<input type="text" name="search" placeholder="Search Patient" ng-model="searchText.First_Name">
 				</form>
 				<table id="example" class="table | table-hover | table-striped" cellspacing="0" width="95%" class="highlight">
 					<thead>
 						<tr>
 							<th>Name</th>
-							<th>Fortycm</th>
-							<th>thirtycm</th>
-							<th>twentycm</th>
-							<th>tencm</th>
-							<th>wrist</th>
+							<th>Wrist</th>
+							<th>10 cm</th>
+							<th>20 cm</th>
+							<th>30 cm</th>
+							<th>40 cm</th>
 						</tr>
 					</thead>
 					<tbody class="table-bordered">
 						<tr ng-repeat="rootRef in rootRefs | filter:searchText">
 							<td align="center"><a ng-click="changeUser(rootRef.First_Name)" href="chart.html">{{rootRef.First_Name}}</a></td>
-							<td align="left">{{rootRef.affected.day1.fortycm_reading}}</td>
-							<td align="left">{{rootRef.affected.day1.thirtycm_reading}}</td>
-							<td align="left">{{rootRef.affected.day1.twentycm_reading}}</td>
-							<td align="left">{{rootRef.affected.day1.tencm_reading}}</td>
 							<td align="left">{{rootRef.affected.day1.wrist}}</td>
+							<td align="left">{{rootRef.affected.day1.tencm_reading}}</td>
+							<td align="left">{{rootRef.affected.day1.twentycm_reading}}</td>
+							<td align="left">{{rootRef.affected.day1.thirtycm_reading}}</td>
+							<td align="left">{{rootRef.affected.day1.fortycm_reading}}</td>
 						</tr>
 					</tbody>
 				</table>
