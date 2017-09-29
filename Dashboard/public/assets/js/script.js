@@ -87,6 +87,10 @@ function gotData(data) {
 
 
   }
+  //////////////////////
+ // Chart Generation //
+//////////////////////
+
   console.log(array);
   	// Chart js
 			// Our labels along the x-axis
