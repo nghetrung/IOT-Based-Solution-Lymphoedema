@@ -196,3 +196,10 @@ input[type=text]:focus {
 form {
   text-align: right;
 }
+a {
+  text-align: center;
+}
+
+/*.right {
+  text-align: right;
+}*/
