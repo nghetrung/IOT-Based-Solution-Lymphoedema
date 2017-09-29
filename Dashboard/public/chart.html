@@ -122,11 +122,11 @@
 			<div class="wrap" ng-controller="MyChartCtrl">
 
 				<h1>Patient Name:
+					<font color = #19B5FE>
 						<script>
-						var key = localStorage.key(3);
-						var value = localStorage.getItem(key);
-						document.write(value);
+						document.write(window.localStorage.getItem("storageName"));
 						</script>
+					</font>
 			</h1>
 			<p></P>
 				<h3>Patient Status throughout the week</h3>
