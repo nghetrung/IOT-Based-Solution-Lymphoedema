@@ -22,20 +22,8 @@ function setup() {
 }
 
 function loadFirebase() {
-
   var ref = database.ref('Stanley');
-
   ref.child('affected').on("value", gotData, errData);
-  /*var data=
-  {
-	  name:"stanley",
-	  tencm:23,
-	  twentycm:34,
-	  thirtycm:45,
-	  fortycm:66,
-	  wrist:6
-  }
-  ref.push(data)*/
 }
 
 function errData(error) {
@@ -103,9 +91,9 @@ function gotData(data) {
 		var fortyInitialIndex = 4;
 
 
-		var wrist1 = [];
+		var wrist = [];
 		for (var i = wristInitialIndex; i <= array.length - 5; i=i + 5) {
-			wrist1.push(array[i]);
+			wrist.push(array[i]);
 
 		}
 
@@ -138,50 +126,43 @@ function gotData(data) {
 				labels: days,
 				datasets: [
 				{
-					data: wrist1,
-          label : "Wrist",
-          backgroundColor : '	rgba(255,99,132,0.2)',
+					data: wrist,
+					label : "Wrist",
+					backgroundColor : '	rgba(255,99,132,0.2)',
 					borderColor: 'rgba(255,99,132,0.5)',
 					borderWidth : 1
 				},
 				{
 					data: tencm,
-          label : "10 cm",
-          backgroundColor : 'rgba(0,0,255,0.2)',
-          borderColor: 'rgba(0,0,255,0.5)',
+					label : "10 cm",
+					backgroundColor : 'rgba(0,0,255,0.2)',
+					borderColor: 'rgba(0,0,255,0.5)',
 					borderWidth : 1
 				},
 				{
 					data: twentycm,
-          label : "20 cm",
-          backgroundColor : 'rgba(0,255,0,0.2)',
+					label : "20 cm",
+					backgroundColor : 'rgba(0,255,0,0.2)',
 					borderColor: 'rgba(0,255,0,0.5)',
 					borderWidth : 1
 				},
 				{
 					data: thirtycm,
-          label : "30 cm",
-          backgroundColor : 'rgba(54,162,235,0.2)',
-          borderColor: 'rgba(54,162,235,1)',
+					label : "30 cm",
+					backgroundColor : 'rgba(54,162,235,0.2)',
+					borderColor: 'rgba(54,162,235,1)',
 					borderWidth : 1
 				},
 				{
 					data: fortycm,
-          label : "40 cm",
-          backgroundColor : 'rgba(255,99,132,0.2)',
+					label : "40 cm",
+					backgroundColor : 'rgba(255,99,132,0.2)',
 					borderColor: 'rgba(255,99,132,1)',
 					borderWidth : 1
 				}
-      // {
-      //   data: twen,
-      //   label : "twenty",
-      //   backgroundColor : 'rgba(54,162,235,0.2)',
-      //   borderColor: 'rgba(54,162,235,1)',
-      //   borderWidth : 1
-      // }
-  ]
-  }
-});
+				]
+		}
+		});
 //console.log(wrist1.length);
 while(array.length>0)
 {
