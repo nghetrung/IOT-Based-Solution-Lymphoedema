@@ -203,3 +203,7 @@ a {
 .nowrap {
   white-space: nowrap ;
 }
+
+.btn-custom {
+  border-color: #19B5FE;
+}
