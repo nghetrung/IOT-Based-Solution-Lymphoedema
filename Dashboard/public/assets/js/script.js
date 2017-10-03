@@ -1,5 +1,5 @@
 (function() {
-	
+
 	var config = {
     apiKey: "AIzaSyA6Hk7drZX9uuRbRnqExRKQFsGJ5bc3de4",
     authDomain: "test-c6de8.firebaseapp.com",
@@ -9,7 +9,7 @@
     messagingSenderId: "201430894267"
 	}
 	firebase.initializeApp(config);
-	
+
 	var app = angular.module("myApp", ["firebase", "chart.js"]);
 	var wrist = [];
 	var tencm = [];
@@ -17,31 +17,31 @@
 	var thirtycm = [];
 	var fortycm = [];
 	var names = [];
-	var name=localStorage.getItem("storageName");	 
+	var name=localStorage.getItem("storageName");
 	var affectedSum = [];
-	
+
 	var wristU = [];
 	var tencmU = [];
 	var twentycmU = [];
 	var thirtycmU = [];
 	var fortycmU = [];
 	var unAffectedSum = [];
-	
+
 		app.controller("MyChartCtrl", function($scope, $firebaseObject, $firebaseArray) {
-			
-			
+
+
 			const rootRef = firebase.database().ref();
-			
+
 			// point to the child
 			const refUser = rootRef.child(name);
 			const refAffected = refUser.child("affected");
 			const refUnaffected = refUser.child("unaffected");
-			
+
 			refAffected.on('value', function(snapshot) {
-				var dayReadings = snapshotToArray(snapshot);	
+				var dayReadings = snapshotToArray(snapshot);
 				console.log(dayReadings);
 				console.log(dayReadings[0]);      // SAME
-				
+
 				// create arrays for the chart
 				snapshot.forEach(function(childSnapshot) {
 					/*childSnapshot.forEach (function(childSnapshot2) {
@@ -49,7 +49,7 @@
 					});*/
 					var day = snapshotToArray(childSnapshot);
 					console.log(day);
-					
+
 					console.log(childSnapshot.val());	// SAME
 					//$scope.wrist.push(day[0]);
 					/*$scope.wrist.push(childSnapshot.val().wrist);
@@ -57,17 +57,17 @@
 					$scope.twentycm.push(childSnapshot.val().twentycm_reading);
 					$scope.thirtycm.push(childSnapshot.val().thirtycm_reading);
 					$scope.fortycm.push(childSnapshot.val().fortycm_reading);*/
-				
+
 				});
 			});
-		
+
 			rootRef.on('value', function(snapshot) {
 				// sync it to a local angular object
-				$scope.dayReadings = $firebaseArray(refAffected);     
+				$scope.dayReadings = $firebaseArray(refAffected);
 				console.log($scope.dayReadings);
-				$scope.dayReadingsUnaffected = $firebaseArray(refUnaffected); 
+				$scope.dayReadingsUnaffected = $firebaseArray(refUnaffected);
 				console.log($scope.dayReadingsUnaffected);
-			
+
 				// code to iterate the firebaseArray in the controller
 				$scope.dayReadings.$loaded()
 					.then(function(){
@@ -91,26 +91,26 @@
 							twentycm.push(dayReading.twentycm_reading);
 							thirtycm.push(dayReading.thirtycm_reading);
 							fortycm.push(dayReading.fortycm_reading);
-							
+
 							// data for the trend chart (wrist, 10cm, ... thoughout a week)
 							$scope.trendData = [wrist, tencm, twentycm, thirtycm, fortycm];		//try to do this in the refAffected, probably the same thing
 							console.log($scope.trendData);
-							
+
 							// compute the sum to use in interlimb chart
 							affectedSum.push(parseFloat(dayReading.wrist)+parseFloat(dayReading.tencm_reading)+parseFloat(dayReading.twentycm_reading)
 											+parseFloat(dayReading.thirtycm_reading)+parseFloat(dayReading.fortycm_reading));
 							console.log(affectedSum);
 							$scope.affectedSum = affectedSum;
 						});
-						
+
 						// chart variables
 						$scope.labels = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 						$scope.type = "line";
 						$scope.chartTypes = ["Trend", "Interlimb(cm)", "Interlimb(%)"];
-						
-						
+
+
 							// reassign the chart variables to match the correct graph
-							
+
 								if ($scope.chartType == "Trend") {
 									$scope.series = ["wrist", "10cm", "20cm", "30cm", "40cm"];
 									$scope.data = $scope.trendData;
@@ -128,7 +128,7 @@
 										}
 									};
 									console.log($scope.data);
-									
+
 								} else if ($scope.chartType == "Interlimb(cm)") {
 									console.log("InterLimb");
 									$scope.series = ["Difference"];
@@ -149,7 +149,7 @@
 										},
 										title: {
 										  display: true,
-										  text: "Summed inter-limb circumference difference over time(cm)",
+										  text: "Sum of inter-limb circumference difference over time(cm)",
 										  fontSize: 20
 										}
 									};
@@ -193,10 +193,9 @@
 										}
 									};
 								}
-						
 					});
-				
-				// getting data from unaffected and compute the sum for each day			
+
+				// getting data from unaffected and compute the sum for each day
 				$scope.dayReadingsUnaffected.$loaded()
 					.then(function(){
 						angular.forEach($scope.dayReadingsUnaffected, function(dayReadingUnaffected, index) {
@@ -210,22 +209,22 @@
 							twentycmU.push(dayReadingUnaffected.twentycm_reading);
 							thirtycmU.push(dayReadingUnaffected.thirtycm_reading);
 							fortycmU.push(dayReadingUnaffected.fortycm_reading);
-							
+
 							// compute the sum to use in interlimb chart
 							unAffectedSum.push(parseFloat(dayReadingUnaffected.wrist)+parseFloat(dayReadingUnaffected.tencm_reading)+parseFloat(dayReadingUnaffected.twentycm_reading)
 												+parseFloat(dayReadingUnaffected.thirtycm_reading)+parseFloat(dayReadingUnaffected.fortycm_reading));
 							console.log(unAffectedSum);
 							$scope.unAffectedSum = unAffectedSum;
 						});
-						
+
 						// chart variables
 						$scope.labels = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 						$scope.type = "line";
 						$scope.chartTypes = ["Trend", "Interlimb(cm)", "Interlimb(%)"];
-						
-					
+
+
 							// reassign the chart variables to match the correct graph
-							
+
 								if ($scope.chartType == "Trend") {
 									$scope.series = ["wrist", "10cm", "20cm", "30cm", "40cm"];
 									$scope.data = $scope.trendData;
@@ -243,7 +242,7 @@
 										}
 									};
 									console.log($scope.data);
-									
+
 								} else if ($scope.chartType == "Interlimb(cm)") {
 									console.log("InterLimb");
 									$scope.series = ["Difference"];
@@ -310,24 +309,24 @@
 								}
 					});
 			});  // end of on(value) method
-				
 
-		
-				
-			
+
+
+
+
 			// Create the graph when choosing options
 			// chart variables
 			$scope.labels = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 			$scope.type = "line";
 			//$scope.series = ["wrist", "10cm", "20cm", "30cm", "40cm"];
-			
-			
+
+
 			$scope.chartTypes = ["Trend", "Interlimb(cm)", "Interlimb(%)"];
-			
+
 			$scope.toggle = function() {
-				
+
 				// reassign the chart variables to match the correct graph
-				
+
 				//$scope.$watch('chartType', function () {
 					if ($scope.chartType == "Trend") {
 						console.log("Trend");
@@ -406,14 +405,14 @@
 					}
 				//});
 			};
-			
-			
+
+
 		}); // end of the controller
-		
+
 	function snapshotToArray(snapshot) {
 		var returnArr = [];
-		
-	
+
+
 		snapshot.forEach(function(childSnapshot) {
 			var item = childSnapshot.val();
 			item.key = childSnapshot.key;
@@ -423,6 +422,6 @@
 
 		return returnArr;
 	};
-	
-		
+
+
 }())
