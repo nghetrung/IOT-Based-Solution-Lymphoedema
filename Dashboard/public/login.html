@@ -6,6 +6,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase.js"></script>
+ 
   <title>Welcome to Project Novel</title>
 </head>
 <body>
@@ -14,13 +16,15 @@
   <div class = "img"><img src="Project_Novel_Light.png"></img> </div>
 
 <div class = "middle" style='width:800px;margin:0 auto;'>
-  <div class = "login-box | transparent | ">
+	<div class = "login-box | transparent | ">
     <h1> <font color = #01f0ff>Log In </font></h1>
     <input type = "text" value = "" placeholder="username" id = "username"/>
     <input type = "password" value = "" placeholder="password" id = "password"/>
 
-    <button>Log In </button>
-  </div>
+    <button id="login">Log In </button>
+	 <button id="logout" class ="btn btn-action hide">Log Out </button>
+	</div>
+  
 </div>
 
 <footer>
@@ -28,5 +32,7 @@
   <font color = #fff>  Project <font color = #00ffff>Novel</font> © Team BlockChain, 2017</font>
   </p>
 </footer>
+
 </body>
+ <script src="app.js"></script>
 </html>
