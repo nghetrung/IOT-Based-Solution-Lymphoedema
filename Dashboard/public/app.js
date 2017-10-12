@@ -14,8 +14,7 @@
   const txtEmail 	 =	document.getElementById('username');
   const txtPassword  =	document.getElementById('password');
   const btnLogin	 =	document.getElementById('login');
-   const btnLogout	 =	document.getElementById('logout');
-  
+ 
   
   btnLogin.addEventListener('click', e=>  {
 	  const email 		= txtEmail.value;
@@ -28,19 +27,14 @@
 	 
   });
   
- 
-  
-  btnLogout.addEventListener('click', e=> 
-  { 
-     firebase.auth().signOut();
-  });
+
   
   firebase.auth().onAuthStateChanged(firebaseUser => {
 	   
 	   if(firebaseUser)
 	   {
 		   console.log(firebaseUser);
-		   btnLogout.classList.remove('hide');
+		  
 		   window.open ('index.html','_self',false)
 	   }
 	   else
