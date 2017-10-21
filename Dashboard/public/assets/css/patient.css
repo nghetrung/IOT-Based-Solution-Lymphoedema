@@ -4,7 +4,9 @@
   border-width: thin;
   background-color: rgb(6, 195, 255);
 }
-
+input:focus::-webkit-input-placeholder {
+    color: white;
+}
 
 input:focus[placeholder]{
     color: white !important;

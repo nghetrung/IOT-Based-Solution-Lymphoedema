@@ -1,0 +1,24 @@
+[debug] [2017-10-21T07:59:38.367Z] ----------------------------------------------------------------------
+[debug] [2017-10-21T07:59:38.369Z] Command:       /usr/local/Cellar/node/8.4.0/bin/node /usr/local/bin/firebase hosting:disable
+[debug] [2017-10-21T07:59:38.369Z] CLI Version:   3.13.1
+[debug] [2017-10-21T07:59:38.369Z] Platform:      darwin
+[debug] [2017-10-21T07:59:38.369Z] Node Version:  v8.4.0
+[debug] [2017-10-21T07:59:38.369Z] Time:          Sat Oct 21 2017 18:59:38 GMT+1100 (AEDT)
+[debug] [2017-10-21T07:59:38.369Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-10-21T07:59:38.377Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase"]
+[debug] [2017-10-21T07:59:38.378Z] > authorizing via signed-in user
+[debug] [2017-10-21T07:59:38.379Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2017-10-21T07:59:38.379Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/EnOn4IEyUMYzrNOdPL3G3Z0L4gBHboqKVdEh_cRebc4',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Sat Oct 21 2017 18:59:38 GMT+1100 (AEDT)
+[debug] [2017-10-21T07:59:38.615Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-21T07:59:38.630Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/test-c6de8  
+ Sat Oct 21 2017 18:59:38 GMT+1100 (AEDT)
+[debug] [2017-10-21T07:59:40.094Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-21T07:59:40.094Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/test-c6de8/tokens  
+ Sat Oct 21 2017 18:59:40 GMT+1100 (AEDT)
+[debug] [2017-10-21T07:59:40.861Z] <<< HTTP RESPONSE 200
