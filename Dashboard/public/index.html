@@ -138,7 +138,7 @@
 							<tbody class="table-bordered">
 								<tr ng-repeat="rootRef in rootRefs | filter:searchText">
 									<td align="left"><a ng-click="changeUser(rootRef.$id,rootRef.First_Name)" href="chart.html">{{rootRef.$id}}</a></td>
-									<td align="left">{{rootRef.First_Name}}</td>
+									<td align="left"><a ng-click="changeUser(rootRef.$id,rootRef.First_Name)" href="chart.html">{{rootRef.First_Name}}</a></td>
 									<td align="left">{{rootRef.affected.day1.fortycm_reading}}</td>
 									<td align="left">{{rootRef.affected.day1.thirtycm_reading}}</td>
 									<td align="left">{{rootRef.affected.day1.twentycm_reading}}</td>
