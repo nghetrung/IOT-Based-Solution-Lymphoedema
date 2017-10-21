@@ -5,11 +5,8 @@
   background-color: rgb(6, 195, 255);
 }
 
-input:focus::-webkit-input-placeholder {
-    color: white;
-}
 
-input[placeholder], [placeholder], *[placeholder] {
+input:focus[placeholder]{
     color: white !important;
 }
 
