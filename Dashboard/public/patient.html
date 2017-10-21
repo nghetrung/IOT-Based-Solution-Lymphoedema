@@ -62,16 +62,16 @@
 				</div>
 
 				<ul class="nav">
-					<li>
-						<a href="index.html">
-															<i class="fa fa-dashboard"></i>
-															<p>Dashboard</p>
-													</a>
-					</li>
 					<li class="active">
+						<a href="index.html">
+							<i class="fa fa-dashboard"></i>
+								<p>Dashboard</p>
+						</a>
+					</li>
+					<li>
 						<a href="patient.html">
-														<i class = "pe-7s-add-user"></i>
-														<p> Add Patient </p>
+							<i class = "pe-7s-add-user"></i>
+							<p> Add Patient </p>
 					</li>
 					</ul>
 	    	</div>
@@ -106,7 +106,8 @@
 					<div class="col-md-12">
 						<div class="card">
 							<div class="header">
-								<h4 class="title">Add Patient Details</h4>
+								<h4 class="title">Patient <font color = #19B5FE>Details</font></h4>
+									<p class="category">Patient <font color = #19B5FE>Register Form</font></p>
 							</div>
 							<div class="content">
 								<form ng-submit="addPatient()">
@@ -151,7 +152,7 @@
 											</div> -->
 											<div class="col-md-6">
 												<div class="form-group">
-													<label>Day-th</label>
+													<label>Day</label>
 													<input type="text" id="last" class="form-control | input" placeholder="Number of Day" ng-model="data.initialDate">
 												</div>
 											</div>
@@ -312,8 +313,8 @@
 										<div class="col-md-12">
 												<div class="card">
 														<div class="header">
-																<h4 class="title">Measurment Input</h4>
-																<p class="category">Please fill in the patient daily update</p>
+																<h4 class="title">Patient <font color = #19B5FE>Measurment</font></h4>
+																<p class="category">Daily <font color = #19B5FE>Measurement Form</font></p>
 														</div>
 														<div class="content table-responsive table-full-width">
 																<table class="table table-hover">
@@ -391,16 +392,11 @@
 <!--  Checkbox, Radio & Switch Plugins -->
 <script src="assets/js/bootstrap-checkbox-radio-switch.js"></script>
 
-
-
 <!--  Notifications Plugin    -->
 <script src="assets/js/bootstrap-notify.js"></script>
-
 
 <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 <script src="assets/js/light-bootstrap-dashboard.js"></script>
 
-<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
-<script src="assets/js/demo.js"></script>
 
 </html>
