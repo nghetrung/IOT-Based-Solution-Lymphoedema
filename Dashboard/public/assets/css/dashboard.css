@@ -490,3 +490,7 @@ a {
   color :rgb(42, 222, 240);
   float:right;
 }
+
+.ion-heart{
+  color : red;
+}
