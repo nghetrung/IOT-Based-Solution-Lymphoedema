@@ -169,7 +169,7 @@ input[type=text] {
     width: 100;
     box-sizing: border-box;
     border: 1px solid #ccc;
-    border-radius: 30px 30px 30px 30px;
+    border-radius: 10px 10px 10px 10px;
     font-size: 16px;
     background-color: white;
     background-image: src('/assets/img/Search.png'));
@@ -190,7 +190,14 @@ input[type=text] {
 /* When the input field gets focus, change its width to 100% */
 input[type=text]:focus {
     width: 100%;
-    box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+    color : white;
+    background-color: rgba(88, 88, 88, 0.78);
+    border-color: rgba(88, 88, 88, 0.78);
+    border : 0px;
+}
+
+input:focus[placeholder]{
+    color: white !important;
 }
 
 form {
