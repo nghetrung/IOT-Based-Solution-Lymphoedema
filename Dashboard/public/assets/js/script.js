@@ -17,7 +17,7 @@
 	var thirtycm = [];
 	var fortycm = [];
 	var names = [];
-	var name=localStorage.getItem("storageName");
+	var id=localStorage.getItem("storageID");
 	var affectedSum = [];
 
 	var wristU = [];
@@ -37,11 +37,11 @@
 			const rootRef = firebase.database().ref();
 
 			// point to the child
-			const refUser = rootRef.child(name);
+			const refUser = rootRef.child(id);
 			const refAffected = refUser.child("affected");
 			const refUnaffected = refUser.child("unaffected");
 
-			refAffected.on('value', function(snapshot) {
+			refAffected.on('value', function(snapshot) {							// TESTING OUTPUT
 				var dayReadings = snapshotToArray(snapshot);
 				console.log(dayReadings);
 				console.log(dayReadings[0]);      // SAME
@@ -96,7 +96,7 @@
 
 							// get the day#
 							console.log(dayReading.$id);
-							dates.push(dayReading.$id);
+							dates.push(dayReading.date);
 							$scope.dates = dates;
 
 							// get the affected data for the day
@@ -133,7 +133,7 @@
 							// reassign the chart variables to match the correct graph
 
 								if ($scope.chartType == "Trend") {
-									$scope.labels = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+									$scope.labels = $scope.dates;
 									$scope.series = ["wrist", "10cm", "20cm", "30cm", "40cm"];
 									$scope.data = $scope.trendData;
 									$scope.options = {
@@ -153,7 +153,7 @@
 
 								} else if ($scope.chartType == "Interlimb(cm)") {
 									console.log("InterLimb");
-									$scope.labels = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+									$scope.labels = $scope.dates;
 									$scope.series = ["Difference"];
 									var diff = [[]];
 									angular.forEach($scope.affectedSum, function(value,index) {
@@ -178,7 +178,7 @@
 									};
 								} else if ($scope.chartType == "Interlimb(%)") {
 									console.log("InterLimb %");
-									$scope.labels = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+									$scope.labels = $scope.dates;
 									$scope.series = ["% excess oedema"];
 									var diff = [[]];
 									var percent;
@@ -281,7 +281,7 @@
 						});
 
 						// chart variables
-						$scope.labels = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+						$scope.labels = $scope.dates;
 						$scope.type = "line";
 						$scope.chartTypes = ["Trend", "Interlimb(cm)", "Interlimb(%)", "Daily"];
 
@@ -289,7 +289,7 @@
 							// reassign the chart variables to match the correct graph
 
 								if ($scope.chartType == "Trend") {
-									$scope.labels = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+									$scope.labels = $scope.dates;
 									$scope.series = ["wrist", "10cm", "20cm", "30cm", "40cm"];
 									$scope.data = $scope.trendData;
 									$scope.options = {
@@ -309,7 +309,7 @@
 
 								} else if ($scope.chartType == "Interlimb(cm)") {
 									console.log("InterLimb");
-									$scope.labels = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+									$scope.labels = $scope.dates;
 									$scope.series = ["Difference"];
 									var diff = [[]];
 									angular.forEach($scope.affectedSum, function(value,index) {
@@ -334,7 +334,7 @@
 									};
 								} else if ($scope.chartType == "Interlimb(%)") {
 									console.log("InterLimb %");
-									$scope.labels = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+									$scope.labels = $scope.dates;
 									$scope.series = ["% excess oedema"];
 									var diff = [[]];
 									var percent;
@@ -346,7 +346,7 @@
 									});
 									$scope.data = diff;
 									$scope.options = {
-										legend: { display: true },											// TODO %Interlimb
+										legend: { display: true },
 										elements: {
 										  line: {
 											tension: 0.3,
@@ -412,7 +412,7 @@
 
 			// Create the graph when choosing options
 			// chart variables
-			$scope.labels = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+			$scope.labels = $scope.dates;
 			$scope.type = "line";
 			//$scope.series = ["wrist", "10cm", "20cm", "30cm", "40cm"];
 
@@ -425,7 +425,7 @@
 				//$scope.$watch('chartType', function () {
 					if ($scope.chartType == "Trend") {
 						console.log("Trend");
-						$scope.labels = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+						$scope.labels = $scope.dates;
 						$scope.series = ["wrist", "10cm", "20cm", "30cm", "40cm"];
 						$scope.data = $scope.trendData;
 						$scope.options = {
@@ -443,7 +443,7 @@
 						};
 					} else if ($scope.chartType == "Interlimb(cm)") {
 						console.log("InterLimb");
-						$scope.labels = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+						$scope.labels = $scope.dates;
 						$scope.series = ["Difference"];
 						var diff = [[]];
 						angular.forEach($scope.affectedSum, function(value,index) {
@@ -468,7 +468,7 @@
 						};
 					} else if ($scope.chartType == "Interlimb(%)") {
 						console.log("InterLimb %");
-						$scope.labels = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+						$scope.labels = $scope.dates;
 						$scope.series = ["% excess oedema"];
 						var diff = [[]];
 						var percent;

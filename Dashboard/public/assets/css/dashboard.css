@@ -484,3 +484,9 @@ a {
        (min-resolution: 120dpi) {
     /* Style adjustments for high resolution devices */
 }
+
+.btn-action:hover{
+  border-color:rgb(42, 222, 240);
+  color :rgb(42, 222, 240);
+  float:right;
+}

@@ -1,0 +1,8 @@
+.input:focus{
+  border-color: rgb(42, 222, 240);
+}
+
+.btn-default:hover{
+  border-color:rgb(42, 222, 240);
+  color :rgb(42, 222, 240);
+}
