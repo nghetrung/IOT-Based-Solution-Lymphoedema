@@ -12,6 +12,7 @@ input:focus[placeholder]{
     color: white !important;
 }
 
+
 .btn-default:hover{
   border-color:rgb(42, 222, 240);
   color :rgb(42, 222, 240);
