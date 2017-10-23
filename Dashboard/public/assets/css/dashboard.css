@@ -161,7 +161,7 @@ Canvas {
   transition: background-color 0.2s ease, opacity 0.2s ease;
 }
 .table-hover tbody tr:hover {
-  background-color: #607D8B;
+  background-color: #3a4c55;
   color : #ecf0f1;
 }
 
@@ -191,13 +191,14 @@ input[type=text] {
 input[type=text]:focus {
     width: 100%;
     color : white;
-    background-color: rgba(88, 88, 88, 0.78);
-    border-color: rgba(88, 88, 88, 0.78);
+    background-color: rgba(31, 126, 193, 0.73);
+    color : #ecf0f1;
+    border-color: transparent;
     border : 0px;
 }
 
-input:focus[placeholder]{
-    color: white !important;
+input[placeholder]:focus {
+  color : white;
 }
 
 form {
@@ -370,7 +371,11 @@ a {
     }
 
 
-
+button{
+  position: absolute;
+  right:0;
+  padding-right: 10px;
+}
 
 
 
@@ -499,5 +504,5 @@ a {
 }
 
 .ion-heart{
-  color : red;
+  color : rgb(0, 232, 255);
 }

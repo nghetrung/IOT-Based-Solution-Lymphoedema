@@ -158,8 +158,8 @@
 									var diff = [[]];
 									angular.forEach($scope.affectedSum, function(value,index) {
 										console.log(value);
-										console.log($scope.unAffectedSum[0]);
-										diff[0].push(value - $scope.unAffectedSum[0]);
+										console.log($scope.unAffectedSum[index]);
+										diff[0].push(value - $scope.unAffectedSum[index]);
 									});
 									console.log(diff);
 									$scope.data = diff;
@@ -184,8 +184,8 @@
 									var percent;
 									angular.forEach($scope.affectedSum, function(value,index) {
 										console.log(value);
-										console.log($scope.unAffectedSum[0]);
-										percent = ((value - $scope.unAffectedSum[0]) / value) * 100;
+										console.log($scope.unAffectedSum[index]);
+										percent = ((value - $scope.unAffectedSum[index]) / value) * 100;
 										diff[0].push(percent);
 									});
 									$scope.data = diff;
@@ -314,8 +314,8 @@
 									var diff = [[]];
 									angular.forEach($scope.affectedSum, function(value,index) {
 										console.log(value);
-										console.log($scope.unAffectedSum[0]);
-										diff[0].push(value - $scope.unAffectedSum[0]);
+										console.log($scope.unAffectedSum[index]);
+										diff[0].push(value - $scope.unAffectedSum[index]);
 									});
 									console.log(diff);
 									$scope.data = diff;
@@ -340,8 +340,8 @@
 									var percent;
 									angular.forEach($scope.affectedSum, function(value,index) {
 										console.log(value);
-										console.log($scope.unAffectedSum[0]);
-										percent = ((value - $scope.unAffectedSum[0]) / value) * 100;
+										console.log($scope.unAffectedSum[index]);
+										percent = ((value - $scope.unAffectedSum[index]) / value) * 100;
 										diff[0].push(percent);
 									});
 									$scope.data = diff;
@@ -448,8 +448,8 @@
 						var diff = [[]];
 						angular.forEach($scope.affectedSum, function(value,index) {
 							console.log(value);
-							console.log($scope.unAffectedSum[0]);
-							diff[0].push(value - $scope.unAffectedSum[0]);				// probably will change to $scope.unAffectedSum[index] if we collect unaffected data for every day
+							console.log($scope.unAffectedSum[index]);
+							diff[0].push(value - $scope.unAffectedSum[index]);				// probably will change to $scope.unAffectedSum[index] if we collect unaffected data for every day
 						});
 						console.log(diff);
 						$scope.data = diff;
@@ -474,8 +474,8 @@
 						var percent;
 						angular.forEach($scope.affectedSum, function(value,index) {
 							console.log(value);
-							console.log($scope.unAffectedSum[0]);
-							percent = ((value - $scope.unAffectedSum[0]) / value) * 100;
+							console.log($scope.unAffectedSum[index]);
+							percent = ((value - $scope.unAffectedSum[index]) / value) * 100;
 							diff[0].push(percent);
 						});
 						$scope.data = diff;
