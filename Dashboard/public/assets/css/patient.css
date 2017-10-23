@@ -16,7 +16,17 @@ input:focus[placeholder]{
   border-color:rgb(42, 222, 240);
   color :rgb(42, 222, 240);
 }
+.btn-action:hover{
+  border-color:rgb(42, 222, 240);
+  color :rgb(42, 222, 240);
+  position: absolute;
+}
 
+.bottom {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+}
 .button {
   background-color: #4CAF50; /* Green */
 }

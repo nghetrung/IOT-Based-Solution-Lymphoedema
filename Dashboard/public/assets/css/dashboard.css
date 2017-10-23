@@ -370,13 +370,16 @@ a {
         max-width: 978px;
     }
 
-
-button{
+.bottom{
   position: absolute;
-  right:0;
-  padding-right: 10px;
+  left:10px;
+  bottom : 10px;
 }
 
+.btn-default:hover{
+  border-color:rgb(42, 222, 240);
+  color :rgb(42, 222, 240);
+}
 
 
 /* ==========================================================================
